@@ -25,6 +25,7 @@ public class PlayerWeaponSystem : MonoBehaviour
     public Transform spawnLocation;
     public int fireRate;
     public float spawnTime;
+    public AudioSource audioS;
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +46,9 @@ public class PlayerWeaponSystem : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Return))
         {
+            audioS.Play();
             Invoke("GunFiringRate",spawnTime);
+            
         }
     }
 

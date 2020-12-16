@@ -13,30 +13,30 @@ public class EnemySpawner : MonoBehaviour
 
     public GameObject enemy;
     public Transform enemySpawner;
-    public float spawnRate;
+    public float waitTime;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
-        Invoke("SpawnEnemy", spawnRate);
+        
         StartCoroutine(DeleteEnemy());
-    }
-
-    void SpawnEnemy()
-    {
-        //After X amount of seconds, spawn the enemy.
-        Instantiate(enemy, enemySpawner.transform.position, enemySpawner.transform.rotation);
+        StartCoroutine(InvokeSpawning());
     }
 
     IEnumerator DeleteEnemy()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(10);
         Destroy(GameObject.Find("Enemy(Clone)"));
+    }
+
+    IEnumerator InvokeSpawning()
+    {   //After X amount of seconds, spawn the enemy.
+        while (true)
+        {
+            Instantiate(enemy, enemySpawner.transform.position, enemySpawner.transform.rotation);
+            yield return new WaitForSeconds(waitTime);
+        }
+
     }
 }

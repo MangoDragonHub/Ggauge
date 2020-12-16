@@ -27,13 +27,10 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag != "Enemy")
-        {
-
-        }
-        else
+        if (collision.collider.tag == "Enemy")
         {
             Destroy(GameObject.FindGameObjectWithTag("Enemy"));
         }
+        
     }
 }
